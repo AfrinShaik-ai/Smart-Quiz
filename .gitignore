@@ -1,0 +1,6 @@
+*.class
+*.log
+*.tmp
+uploads/
+.idea/
+*.iml
