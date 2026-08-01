@@ -1,6 +1,6 @@
 -- Create the database
-CREATE DATABASE IF NOT EXISTS `smart_quiz`;
-USE `smart_quiz`;
+-- CREATE DATABASE IF NOT EXISTS `smart_quiz`;
+-- USE `smart_quiz`;
 
 -- Drop tables if exist (drop dependent table first)
 DROP TABLE IF EXISTS `ans`;

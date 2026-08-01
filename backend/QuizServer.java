@@ -48,11 +48,12 @@ public class QuizServer extends WebSocketServer {
     private void connectDB() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/smart_quiz?serverTimezone=UTC",
-                    "root",
-                    "afrin9105"
-            );
+            String host = System.getenv("DB_HOST");
+            String db = System.getenv("DB_NAME");
+            String user = System.getenv("DB_USER");
+            String pass = System.getenv("DB_PASSWORD");
+
+            conn = DriverManager.getConnection("jdbc:mysql://" + host + ":3306/" + db + "?serverTimezone=UTC",user,pass);
             System.out.println("Connected to Database: smart_quiz");
         } catch (Exception e) {
             e.printStackTrace();
@@ -331,7 +332,10 @@ public class QuizServer extends WebSocketServer {
 
     public static void main(String[] args) throws Exception {
         // start WS server on 12345
-        QuizServer server = new QuizServer(12345);
+        int port = Integer.parseInt(
+        System.getenv().getOrDefault("PORT", "12345"));
+
+        QuizServer server = new QuizServer(port);
         server.start();
         System.out.println("Smart Quiz Server running on port 12345");
 
