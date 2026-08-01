@@ -401,7 +401,7 @@ function renderResults(correctMap) {
     row.className = "mb-2 p-2 rounded";
     row.style.background = "#071023";
     row.innerHTML = `<div class="text-sm font-medium">${q.question}</div>
-      <div class="text-xs muted">Your: ${user} | Correct: ${correct} ${ok ? '✅' : '❌'}</div>`;
+      <div class="text-xs muted">Your: ${user} | Correct: ${correct} ${ok ? '+1' : '0'}</div>`;
     resultsListEl.appendChild(row);
   });
   scoreTextEl.textContent = `${score} / ${questions.length}`;
