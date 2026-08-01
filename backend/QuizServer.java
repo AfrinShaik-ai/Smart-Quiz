@@ -225,8 +225,30 @@ public class QuizServer extends WebSocketServer {
                     
                     String userName = sessionNames.getOrDefault(sessionId, clientNames.getOrDefault(client, "Unknown User"));
                     
-                    // Store result
-                    sessionResults.put(sessionId, new ResultData(userName, score, total));
+                    // Store result permanently in database
+                    try {
+                        PreparedStatement resultPs = conn.prepareStatement(
+                        "INSERT INTO quiz_results " +
+                        "(session_id, user_name, score, total_questions, percentage) " +
+                        "VALUES (?, ?, ?, ?, ?)"
+                        );
+
+                        double percentage = (score * 100.0) / total;
+
+                        resultPs.setString(1, sessionId);
+                        resultPs.setString(2, userName);
+                        resultPs.setInt(3, score);
+                        resultPs.setInt(4, total);
+                        resultPs.setDouble(5, percentage);
+
+                        resultPs.executeUpdate();
+                        resultPs.close();
+
+                        System.out.println("Result saved to database");
+
+                } catch(Exception e) {
+                e.printStackTrace();
+                }
                     
                     System.out.println("QUIZ COMPLETED");
                     System.out.println("   User: " + userName);

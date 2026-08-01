@@ -21,6 +21,15 @@ CREATE TABLE `ans` (
     `option_char` VARCHAR(1) NOT NULL,
     FOREIGN KEY (`question_id`) REFERENCES `qst`(`question_id`) ON DELETE CASCADE
 );
+CREATE TABLE quiz_results (
+    result_id INT AUTO_INCREMENT PRIMARY KEY,
+    session_id VARCHAR(100) NOT NULL,
+    user_name VARCHAR(100) NOT NULL,
+    score INT NOT NULL,
+    total_questions INT NOT NULL,
+    percentage DOUBLE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 -- Insert 50 questions
 INSERT INTO `qst` (`text`, `correct_answer`) VALUES
