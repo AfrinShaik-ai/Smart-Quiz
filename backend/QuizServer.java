@@ -337,14 +337,14 @@ public class QuizServer extends WebSocketServer {
 
         QuizServer server = new QuizServer(port);
         server.start();
-        System.out.println("Smart Quiz Server running on port 12345");
+        System.out.println("Smart Quiz Server running on port " + port);
 
         // start HTTP endpoint for upload on port 12346
-        HttpServer http = HttpServer.create(new InetSocketAddress(12346), 0);
-        http.createContext("/uploadVideo", new UploadHandler());
-        http.setExecutor(Executors.newCachedThreadPool());
-        http.start();
-        System.out.println("HTTP upload endpoint started at: http://localhost:12346/uploadVideo");
+        // HttpServer http = HttpServer.create(new InetSocketAddress(12346), 0);
+        // http.createContext("/uploadVideo", new UploadHandler());
+        // http.setExecutor(Executors.newCachedThreadPool());
+        // http.start();
+        // System.out.println("HTTP upload endpoint started at: http://localhost:12346/uploadVideo");
         System.out.println("\n" + "=".repeat(60));
         System.out.println("Smart Quiz Server is ready!");
         System.out.println("=".repeat(60) + "\n");
