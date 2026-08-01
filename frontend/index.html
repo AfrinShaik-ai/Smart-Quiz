@@ -111,6 +111,7 @@ let questions = [];
 let answers = {};
 let currentIndex = 0;
 let totalCount = 0;
+let violations = 0;
 
 /* ---------- webcam recording ---------- */
 let mediaRecorder = null;
@@ -162,7 +163,27 @@ function stopTimer(){ clearInterval(timerInterval); timerEl.textContent="--"; }
 function show(el){ el.classList.remove('hidden'); }
 function hide(el){ el.classList.add('hidden'); }
 function setStatus(txt){ statusEl.textContent = txt; }
+/* Tab Switch */ 
+document.addEventListener("visibilitychange", () => {
 
+    if (document.hidden) {
+        violations++;
+
+        console.log("Tab switch detected:", violations);
+
+        setStatus(
+            "Warning: Leaving the quiz tab is not allowed. Violation count: " 
+            + violations
+        );
+
+        if(ws && ws.readyState === WebSocket.OPEN && sessionId){
+            ws.send(
+                "VIOLATION|" + sessionId + "|" + violations
+            );
+        }
+    }
+
+});
 /* ---------- Name submission ---------- */
 nameSubmitBtn.addEventListener('click', () => {
   const name = userNameInput.value.trim();

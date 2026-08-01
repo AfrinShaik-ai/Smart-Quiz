@@ -262,6 +262,36 @@ public class QuizServer extends WebSocketServer {
                 return;
             }
 
+            if(message.startsWith("VIOLATION|")){
+
+                String[] parts = message.split("\\|");
+
+                String sessionId = parts[1];
+                int count = Integer.parseInt(parts[2]);
+
+                String userName = sessionNames.getOrDefault(
+                sessionId,
+                "Unknown User"
+            );
+
+            System.out.println(
+                "Cheating violation detected"
+            );
+
+            System.out.println(
+                "User: " + userName
+            );
+
+            System.out.println(
+                "Session: " + sessionId
+            );
+
+            System.out.println(
+                "Violations: " + count
+            );
+
+            return;
+            }
             // Otherwise treat as an answer submission: expected "questionId|OptionChar"
             String[] parts = message.split("\\|");
             if (parts.length < 2) {
