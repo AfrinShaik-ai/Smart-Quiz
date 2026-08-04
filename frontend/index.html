@@ -25,12 +25,31 @@
   <div class="card">
     <div class="topbar">
       <div>
-        <h1 class="text-2xl font-bold">Smart Quiz – Video Supervised</h1>
-        <p class="muted text-sm">Enter your name, select questions, and take the quiz.</p>
+        <h1 class="text-4xl font-extrabold tracking-tight">
+Smart <span class="text-emerald-400">Quiz</span>
+</h1>
+
+<p class="text-lg text-slate-300 mt-2">
+Video-Supervised Assessment Platform
+</p>
+
+<p class="text-sm text-slate-500 mt-1">
+Secure • Timed • Real-time Evaluation
+</p>
       </div>
       <div class="flex items-center space-x-3">
         <div id="webcam-wrap" class="text-right muted">
-          <div class="text-xs">Webcam</div>
+          <div class="text-right">
+
+<div class="text-red-400 font-semibold">
+● LIVE
+</div>
+
+<div class="text-xs text-slate-400">
+Recording Enabled
+</div>
+
+</div>
           <video id="webcam" autoplay muted playsinline></video>
         </div>
       </div>
@@ -39,9 +58,21 @@
     <!-- Name Input -->
     <div id="name-input" class="mb-4">
       <div class="text-center mb-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-xl p-5 shadow-md">
+  <h3 class="font-semibold text-emerald-400 mb-3">
+ Assessment Guidelines
+</h3>
+
+<ul class="space-y-2 text-slate-300 text-left">
+<li>Webcam recording is active</li>
+<li>30 seconds for each question</li>
+<li>Tab switching is monitored</li>
+<li>Previous questions are disabled</li>
+</ul>
+</div>
         <div class="text-sm muted mb-2">Enter Your Name</div>
         <input type="text" id="userName" class="input-field" placeholder="Your name..." maxlength="50" />
-        <button id="nameSubmitBtn" class="px-6 py-2 rounded bg-emerald-500 text-black font-semibold w-full">Continue</button>
+        <button id="nameSubmitBtn" class="px-6 py-2 rounded bg-emerald-500 text-black font-semibold w-full">Start Assessment</button>
       </div>
       <div id="status" class="text-center muted text-sm"></div>
     </div>
@@ -49,12 +80,38 @@
     <!-- Setup -->
     <div id="setup" class="mb-4 hidden">
       <div class="text-center mb-4">
-        <div class="text-sm muted mb-2">Welcome, <span id="displayName" class="text-emerald-400 font-semibold"></span>!</div>
-        <div class="text-sm muted mb-2">How many questions would you like?</div>
+       <h2 class="text-2xl font-bold mb-2">
+ Configure Assessment
+</h2>
+
+<p class="text-slate-400 mb-4">
+Welcome,
+<span id="displayName"
+class="text-emerald-400 font-semibold"></span>
+</p>
+
+<p class="text-slate-400 mb-5">
+Choose the number of questions for this assessment.
+</p>
         <div class="flex justify-center gap-3">
-          <button class="btn-choose px-4 py-2 rounded bg-emerald-500 text-black font-semibold" data-count="10">10</button>
-          <button class="btn-choose px-4 py-2 rounded bg-emerald-500 text-black font-semibold" data-count="20">20</button>
-          <button class="btn-choose px-4 py-2 rounded bg-emerald-500 text-black font-semibold" data-count="30">30</button>
+          <button class="btn-choose w-24 h-16 rounded-xl
+bg-slate-800 border border-slate-700
+hover:border-emerald-400
+hover:bg-slate-700
+transition duration-200
+font-bold">10</button>
+          <button class="btn-choose w-24 h-16 rounded-xl
+bg-slate-800 border border-slate-700
+hover:border-emerald-400
+hover:bg-slate-700
+transition duration-200
+font-bold">20</button>
+          <button class="btn-choose w-24 h-16 rounded-xl
+bg-slate-800 border border-slate-700
+hover:border-emerald-400
+hover:bg-slate-700
+transition duration-200
+font-bold">30</button>
         </div>
       </div>
     </div>
@@ -62,19 +119,25 @@
     <!-- Quiz area -->
     <div id="quiz-area" class="hidden">
       <div class="mb-3">
+        <div class="w-full bg-slate-700 rounded-full h-2 mb-3">
+    <div id="progressBar"
+         class="bg-emerald-500 h-2 rounded-full"
+         style="width:0%">
+    </div>
+</div>
         <div class="flex justify-between items-center">
           <div class="text-sm muted">Question <span id="currentIndex">1</span> / <span id="totalCount">10</span></div>
-          <div id="timer" class="text-sm muted">Time: <span id="timerValue">--</span></div>
+          <div id="timer" class="text-lg font-bold text-emerald-400">Time: <span id="timerValue">--</span></div>
         </div>
       </div>
       <h2 id="questionText" class="text-lg font-semibold mb-4">Question text</h2>
 
       <div id="options" class="mb-4"></div>
 
-      <div class="flex justify-between items-center">
-        <button id="prevBtn" class="px-4 py-2 rounded bg-slate-700 muted">Previous</button>
+      <div class="flex justify-end items-center gap-3">
+        <!-- <button id="prevBtn" class="px-4 py-2 rounded bg-slate-700 muted">Previous</button> -->
         <div class="flex items-center gap-3">
-          <button id="finishBtn" class="px-4 py-2 rounded bg-amber-500 text-black">Finish</button>
+          <button id="finishBtn" class="px-4 py-2 rounded bg-red-500 hover:bg-red-600 text-black">Finish</button>
           <button id="nextBtn" class="px-4 py-2 rounded bg-emerald-500 text-black">Next</button>
         </div>
       </div>
@@ -82,12 +145,14 @@
 
     <!-- Results -->
     <div id="results" class="hidden mt-4">
-      <h3 class="text-xl font-bold">Results</h3>
+     <h3 class="text-2xl font-bold text-emerald-400">
+🎉 Quiz Completed
+</h3>
       <p class="muted text-sm mb-2">Your answers and the correct ones:</p>
       <div id="resultsList" class="mb-4"></div>
       <div class="flex justify-between items-center">
-        <div class="text-lg font-semibold">Score: <span id="scoreText">0/0</span></div>
-        <button id="restart" class="px-4 py-2 rounded bg-emerald-500 text-black">Restart</button>
+        <div class="text-3xl font-bold text-emerald-400">Score: <span id="scoreText">0/0</span></div>
+        <button id="restart" class="px-4 py-2 rounded bg-emerald-500 text-black">Take Another Quiz</button>
       </div>
     </div>
 
@@ -137,7 +202,7 @@ const scoreTextEl = document.getElementById('scoreText');
 const webcamVideo = document.getElementById('webcam');
 
 const nextBtn = document.getElementById('nextBtn');
-const prevBtn = document.getElementById('prevBtn');
+//const prevBtn = document.getElementById('prevBtn');
 const finishBtn = document.getElementById('finishBtn');
 const restartBtn = document.getElementById('restart');
 
@@ -148,9 +213,25 @@ function startTimer() {
   clearInterval(timerInterval);
   let t = questionTime;
   timerEl.textContent = `${t}s`;
+
+if (t <= 5) {
+    timerEl.parentElement.className = "text-lg font-bold text-red-500";
+} else if (t <= 10) {
+    timerEl.parentElement.className = "text-lg font-bold text-yellow-400";
+} else {
+    timerEl.parentElement.className = "text-lg font-bold text-emerald-400";
+}
   timerInterval = setInterval(()=> {
     t--;
     timerEl.textContent = `${t}s`;
+
+if (t <= 5) {
+    timerEl.parentElement.className = "text-lg font-bold text-red-500";
+} else if (t <= 10) {
+    timerEl.parentElement.className = "text-lg font-bold text-yellow-400";
+} else {
+    timerEl.parentElement.className = "text-lg font-bold text-emerald-400";
+}
     if (t <= 0) {
       clearInterval(timerInterval);
       goNext();
@@ -333,6 +414,8 @@ async function uploadVideo(blob) {
 /* ---------- quiz UI logic ---------- */
 function renderQuestion(index) {
   currentIndex = index;
+  document.getElementById("progressBar").style.width =
+((currentIndex + 1) / totalCount) * 100 + "%";
   const q = questions[currentIndex];
   if (!q) return;
   currentIndexEl.textContent = (currentIndex + 1);
@@ -365,10 +448,10 @@ function goNext() {
     finishQuiz();
   }
 }
-function goPrev() {
+/*function goPrev() {
   stopTimer();
   if (currentIndex > 0) renderQuestion(currentIndex - 1);
-}
+}*/
 
 /* ---------- finish flow ---------- */
 function finishQuiz() {
@@ -447,7 +530,7 @@ function showLocalResults() {
 /* ---------- UI event bindings ---------- */
 document.querySelectorAll('.btn-choose').forEach(btn => {
   btn.addEventListener('click', async () => {
-    totalCount = parseInt(btn.dataset.count);
+    totalCount = parseInt(btn.textContent);
     questions = [];
     answers = {};
     sessionQuestionIds = [];
@@ -466,7 +549,7 @@ document.querySelectorAll('.btn-choose').forEach(btn => {
 });
 
 nextBtn.addEventListener('click', goNext);
-prevBtn.addEventListener('click', goPrev);
+//prevBtn.addEventListener('click', goPrev);
 finishBtn.addEventListener('click', finishQuiz);
 restartBtn.addEventListener('click', () => location.reload());
 
